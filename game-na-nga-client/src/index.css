@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@import "@fontsource/jersey-25";
+@import "@fontsource/jersey-10";
+
+@theme {
+  --font-sans: "Jersey 25", "sans-serif";
+  --font-jersey-10: "Jersey 10", "serif";
+}
