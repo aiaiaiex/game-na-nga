@@ -12,4 +12,10 @@
   --font-sans: "Noto Sans Variable", sans-serif;
   --font-jersey-10: "Jersey 10", serif;
   --font-jersey-25: "Jersey 25", serif;
+
+  --color-gnn-white: #f7f4f3;
+  --color-gnn-gray: #564d4a;
+  --color-gnn-light-red: #f24333;
+  --color-gnn-red: #ba1b1d;
+  --color-gnn-dark-red: #5b2333;
 }
