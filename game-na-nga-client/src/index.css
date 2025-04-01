@@ -1,9 +1,15 @@
 @import "tailwindcss";
 
-@import "@fontsource/jersey-25";
+@import "@fontsource-variable/noto-sans";
+@import "@fontsource-variable/noto-sans/wdth.css";
+@import "@fontsource-variable/noto-sans/wght-italic.css";
+@import "@fontsource-variable/noto-sans/wdth-italic.css";
+
 @import "@fontsource/jersey-10";
+@import "@fontsource/jersey-25";
 
 @theme {
-  --font-sans: "Jersey 25", "sans-serif";
-  --font-jersey-10: "Jersey 10", "serif";
+  --font-sans: "Noto Sans Variable", sans-serif;
+  --font-jersey-10: "Jersey 10", serif;
+  --font-jersey-25: "Jersey 25", serif;
 }
