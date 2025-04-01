@@ -1,11 +1,22 @@
 import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
 
-import { SERVER } from "./config";
+import { CLIENT, SERVER } from "./config";
 import { userRouter } from "./routes/user";
 
 const server = express();
 
-server.use(express.json());
+server.use([
+  express.json(),
+  express.urlencoded({ extended: false }),
+  cookieParser(),
+  cors({
+    origin: CLIENT.url,
+    methods: ["POST", "GET"],
+    credentials: true,
+  }),
+]);
 
 server.use("/user", userRouter);
 
@@ -14,5 +25,5 @@ server.get("/ping", async (req, res) => {
 });
 
 server.listen(SERVER.port, () => {
-  console.log(`Server listening on port ${SERVER.port}`);
+  console.log(`Server listening on http://localhost:${SERVER.port}`);
 });
