@@ -21,11 +21,16 @@ userRouter.post("/signup", async (req, res): Promise<any> => {
   } else {
     const { email, username, password } = result.data;
     try {
-      await pool.query("INSERT INTO `user` () VALUES (?, ?, ?)", [
+      await pool.query(
+        "INSERT INTO `user` (email, username, password) VALUES (?, ?, ?)",
+        [email, username, sha256.hmac(KEYS.hmac, password)]
+      );
+
+      await pool.query("INSERT INTO `log` (email, action) VALUES (?, ?)", [
         email,
-        username,
-        sha256.hmac(KEYS.hmac, password),
+        `REGISTER username: ${username}`,
       ]);
+
       return res.sendStatus(200);
     } catch {
       return res.sendStatus(400);
