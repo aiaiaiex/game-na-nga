@@ -19,7 +19,8 @@
       "bradlc.vscode-tailwindcss",
       "dbaeumer.vscode-eslint",
       "esbenp.prettier-vscode",
-      "jock.svg"
+      "jock.svg",
+      "rangav.vscode-thunder-client"
     ]
   }
 }
