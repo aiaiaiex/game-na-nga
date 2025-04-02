@@ -11,12 +11,7 @@ server.use([
   express.json(),
   express.urlencoded({ extended: false }),
   cookieParser(),
-  cors({
-    origin: true,
-    allowedHeaders: ["Content-Type"],
-    methods: ["POST", "GET"],
-    credentials: true,
-  }),
+  cors(),
 ]);
 
 server.use("/user", userRouter);
