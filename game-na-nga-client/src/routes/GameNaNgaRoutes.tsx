@@ -15,7 +15,7 @@ export function GameNaNgaRoutes({
   ...attributes
 }: GameNaNgaRoutesProps): JSX.Element {
   return (
-    <Routes {...attributes}>
+    <Routes>
       <Route element={<LoggedInOnlyRoute />}>
         <Route path="/" element={<HomePage />} />
       </Route>
