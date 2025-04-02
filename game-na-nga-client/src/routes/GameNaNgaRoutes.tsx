@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, JSX } from "react";
+import { JSX } from "react";
 import { Route, Routes } from "react-router";
 
 import { LoggedInOnlyRoute } from "./LoggedInOnlyRoute";
@@ -9,11 +9,7 @@ import { SignUpPage } from "../pages/SignUpPage/SignUpPage";
 import { LogInPage } from "../pages/LogInPage/LogInPage";
 import { NotFoundPage } from "../pages/NotFoundPage/NotFoundPage";
 
-interface GameNaNgaRoutesProps extends ComponentPropsWithoutRef<"div"> {}
-
-export function GameNaNgaRoutes({
-  ...attributes
-}: GameNaNgaRoutesProps): JSX.Element {
+export function GameNaNgaRoutes(): JSX.Element {
   return (
     <Routes>
       <Route element={<LoggedInOnlyRoute />}>
