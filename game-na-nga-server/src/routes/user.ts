@@ -12,7 +12,7 @@ export const userRouter = Router();
 userRouter.post("/signup", async (req, res): Promise<any> => {
   const z_result = z
     .object({
-      email: z.string().trim().min(6).max(254),
+      email: z.string().toLowerCase().trim().min(6).max(254),
       username: z.string().trim().min(1).max(36),
       password: z.string().trim().min(12),
     })
@@ -43,7 +43,7 @@ userRouter.post("/signup", async (req, res): Promise<any> => {
 userRouter.post("/login", async (req, res): Promise<any> => {
   const z_result = z
     .object({
-      email: z.string().trim().min(6).max(254),
+      email: z.string().toLowerCase().trim().min(6).max(254),
       password: z.string().trim().min(12),
     })
     .safeParse(req.body);
@@ -90,6 +90,7 @@ userRouter.post("/login", async (req, res): Promise<any> => {
 userRouter.post("/logout", verifyJWTToken, async (_req, res): Promise<any> => {
   const z_result = z
     .string()
+    .toLowerCase()
     .trim()
     .min(6)
     .max(254)
