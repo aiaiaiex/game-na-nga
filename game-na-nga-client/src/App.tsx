@@ -5,6 +5,7 @@ import { SignUpPage } from "./pages/SignUpPage/SignUpPage";
 import { LogInPage } from "./pages/LogInPage/LogInPage";
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import { LoggedInOnlyRoute } from "./routes/LoggedInOnlyRoute";
+import { LoggedOutOnlyRoute } from "./routes/LoggedOutOnlyRoute";
 
 function App() {
   return (
@@ -12,8 +13,10 @@ function App() {
       <Route element={<LoggedInOnlyRoute />}>
         <Route path="/" element={<HomePage />} />
       </Route>
-      <Route path="/signup" element={<SignUpPage />} />
-      <Route path="/login" element={<LogInPage />} />
+      <Route element={<LoggedOutOnlyRoute />}>
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/login" element={<LogInPage />} />
+      </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
