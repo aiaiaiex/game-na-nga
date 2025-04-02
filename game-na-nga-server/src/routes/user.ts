@@ -120,3 +120,7 @@ userRouter.post("/logout", verifyJWTToken, async (_req, res): Promise<any> => {
     return res.sendStatus(400);
   }
 });
+
+userRouter.get("/verify", verifyJWTToken, async (_req, res): Promise<any> => {
+  return res.sendStatus(200);
+});
