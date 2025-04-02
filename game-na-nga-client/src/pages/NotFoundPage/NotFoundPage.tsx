@@ -24,7 +24,7 @@ export function NotFoundPage({
   return (
     <div {...attributes}>
       <span className="flex">PAGE NOT FOUND</span>
-      <span className="flex">REDIRECTING TO HOME PAGE IN</span>
+      <span className="flex">REDIRECTING YOU IN</span>
       <span className="flex">
         {remainingSeconds} {remainingSeconds !== 1 ? "SECONDS" : "SECOND"}
       </span>
