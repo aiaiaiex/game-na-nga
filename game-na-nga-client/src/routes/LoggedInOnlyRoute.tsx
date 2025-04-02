@@ -2,7 +2,7 @@ import axios from "axios";
 import { ComponentPropsWithoutRef, JSX, useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router";
 
-import { LoadingPage } from "../pages/LoadingPage/Loading Page";
+import { LoadingPage } from "../pages/LoadingPage/LoadingPage";
 
 interface LoggedInOnlyRouteProps extends ComponentPropsWithoutRef<"div"> {}
 
