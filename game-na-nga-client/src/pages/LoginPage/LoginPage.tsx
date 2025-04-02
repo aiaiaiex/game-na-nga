@@ -79,7 +79,7 @@ export function LogInPage({ ...attributes }: LogInPageProps): JSX.Element {
       </div>
       <Link to="/signup">
         <span className="text-gnn-red font-jersey-25 text-lg hover:underline">
-          No account yet? Sign up.
+          Don't have an account? Sign up.
         </span>
       </Link>
       <span
