@@ -2,11 +2,14 @@ import axios from "axios";
 import { ComponentPropsWithoutRef, JSX, useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router";
 
+import { LoadingPage } from "../pages/LoadingPage/Loading Page";
+
 interface LoggedInOnlyRoute extends ComponentPropsWithoutRef<"div"> {}
 
 export function LoggedInOnlyRoute({
   ...attributes
 }: LoggedInOnlyRoute): JSX.Element {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [jwtValidity, setJWTValidity] = useState<boolean>(false);
 
   useEffect(() => {
@@ -17,12 +20,20 @@ export function LoggedInOnlyRoute({
           { withCredentials: true },
         );
         setJWTValidity(status === 200);
+        setIsLoading(false);
       } catch {
         setJWTValidity(false);
+        setIsLoading(false);
       }
     };
     getJWTValidity();
   }, []);
 
-  return jwtValidity ? <Outlet /> : <Navigate to="/login" />;
+  return isLoading ? (
+    <LoadingPage />
+  ) : jwtValidity ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/login" />
+  );
 }
