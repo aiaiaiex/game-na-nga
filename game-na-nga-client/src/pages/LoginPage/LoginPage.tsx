@@ -18,8 +18,8 @@ export function LogInPage({ ...attributes }: LogInPageProps): JSX.Element {
       await axios.post(
         `${import.meta.env.VITE_SERVER_URL}/user/login`,
         {
-          email,
-          password,
+          email: email.trim(),
+          password: password.trim(),
         },
         { withCredentials: true },
       );
@@ -54,7 +54,7 @@ export function LogInPage({ ...attributes }: LogInPageProps): JSX.Element {
             placeholder="Email"
             value={email}
             onChange={(e) => {
-              setEmail(e.target.value);
+              setEmail(e.target.value.toLowerCase());
             }}
           />
           <input
