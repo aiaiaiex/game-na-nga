@@ -10,7 +10,7 @@ export function LoadingPage({ ...attributes }: LoadingPageProps): JSX.Element {
       className="bg-gnn-white flex min-h-screen w-screen flex-col items-center justify-center"
       {...attributes}
     >
-      <LoadingIcon className="fill-gnn-red max-h-16 min-h-16 max-w-16 min-w-16 animate-pulse" />
+      <LoadingIcon className="fill-gnn-red max-h-20 min-h-20 max-w-20 min-w-20 animate-pulse" />
     </div>
   );
 }
