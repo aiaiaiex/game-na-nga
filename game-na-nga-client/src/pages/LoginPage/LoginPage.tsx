@@ -14,23 +14,29 @@ export function LogInPage({ ...attributes }: LogInPageProps): JSX.Element {
   const navigate = useNavigate();
 
   const login = async () => {
-    try {
-      await axios.post(
-        `${import.meta.env.VITE_SERVER_URL}/user/login`,
-        {
-          email: email.trim(),
-          password: password.trim(),
-        },
-        { withCredentials: true },
-      );
-      setErrorMessage("");
-      navigate("/");
-    } catch (err) {
-      if (axios.isAxiosError(err) && err.response?.status === 401) {
-        setErrorMessage("Incorrect email or password!");
-      } else {
-        setErrorMessage("Something went wrong...");
+    const preprocessed_email = email.trim();
+    const preprocessed_password = password.trim();
+    if (preprocessed_email.length > 0 && preprocessed_password.length > 0) {
+      try {
+        await axios.post(
+          `${import.meta.env.VITE_SERVER_URL}/user/login`,
+          {
+            email: preprocessed_email,
+            password: preprocessed_password,
+          },
+          { withCredentials: true },
+        );
+        setErrorMessage("");
+        navigate("/");
+      } catch (err) {
+        if (axios.isAxiosError(err) && err.response?.status === 401) {
+          setErrorMessage("Incorrect email or password!");
+        } else {
+          setErrorMessage("Something went wrong...");
+        }
       }
+    } else {
+      setErrorMessage("Input fields must not be empty!");
     }
   };
 
@@ -56,6 +62,7 @@ export function LogInPage({ ...attributes }: LogInPageProps): JSX.Element {
             onChange={(e) => {
               setEmail(e.target.value.toLowerCase());
             }}
+            required
           />
           <input
             className="border-gnn-gray font-jersey-25 block w-full rounded border p-1 text-xl shadow"
@@ -67,6 +74,7 @@ export function LogInPage({ ...attributes }: LogInPageProps): JSX.Element {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
+            required
           />
           <button
             className="bg-gnn-red font-jersey-25 w-full cursor-pointer rounded p-1 shadow"
