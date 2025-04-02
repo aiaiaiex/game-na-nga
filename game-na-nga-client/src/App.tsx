@@ -4,12 +4,12 @@ import { HomePage } from "./pages/HomePage/HomePage";
 import { SignUpPage } from "./pages/SignUpPage/SignUpPage";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
-import { PrivateRoute } from "./routes/PrivateRoute";
+import { LoggedInOnlyRoute } from "./routes/LoggedInOnlyRoute";
 
 function App() {
   return (
     <Routes>
-      <Route element={<PrivateRoute />}>
+      <Route element={<LoggedInOnlyRoute />}>
         <Route path="/" element={<HomePage />} />
       </Route>
       <Route path="/signup" element={<SignUpPage />} />

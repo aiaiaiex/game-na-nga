@@ -1,11 +1,12 @@
 import axios from "axios";
 import { ComponentPropsWithoutRef, JSX, useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router";
-import { SERVER } from "../config";
 
-interface PrivateRoute extends ComponentPropsWithoutRef<"div"> {}
+interface LoggedInOnlyRoute extends ComponentPropsWithoutRef<"div"> {}
 
-export function PrivateRoute({ ...attributes }: PrivateRoute): JSX.Element {
+export function LoggedInOnlyRoute({
+  ...attributes
+}: LoggedInOnlyRoute): JSX.Element {
   const [jwtValidity, setJWTValidity] = useState<boolean>(true);
 
   useEffect(() => {
