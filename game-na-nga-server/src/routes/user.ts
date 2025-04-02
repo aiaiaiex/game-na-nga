@@ -69,13 +69,13 @@ userRouter.post("/login", async (req, res): Promise<any> => {
         });
         await pool.query("INSERT INTO `log` (email, action) VALUES (?, ?)", [
           email,
-          "LOGIN success",
+          "LOG IN success",
         ]);
         return res.sendStatus(200);
       } else {
         await pool.query("INSERT INTO `log` (email, action) VALUES (?, ?)", [
           email,
-          "LOGIN FAILED!",
+          "LOG IN FAILED!",
         ]);
         return res.sendStatus(401);
       }
@@ -107,13 +107,13 @@ userRouter.post("/logout", verifyJWTToken, async (_req, res): Promise<any> => {
 
       await pool.query("INSERT INTO `log` (email, action) VALUES (?, ?)", [
         email,
-        "LOGOUT success",
+        "LOG OUT success",
       ]);
       return res.sendStatus(200);
     } catch {
       await pool.query("INSERT INTO `log` (email, action) VALUES (?, ?)", [
         email,
-        "LOGOUT FAILED!",
+        "LOG OUT FAILED!",
       ]);
       return res.sendStatus(400);
     }
