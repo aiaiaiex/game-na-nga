@@ -4,11 +4,11 @@ import { Navigate, Outlet } from "react-router";
 
 import { LoadingPage } from "../pages/LoadingPage/Loading Page";
 
-interface LoggedInOnlyRoute extends ComponentPropsWithoutRef<"div"> {}
+interface LoggedInOnlyRouteProps extends ComponentPropsWithoutRef<"div"> {}
 
 export function LoggedInOnlyRoute({
   ...attributes
-}: LoggedInOnlyRoute): JSX.Element {
+}: LoggedInOnlyRouteProps): JSX.Element {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [jwtValidity, setJWTValidity] = useState<boolean>(false);
 
@@ -30,9 +30,9 @@ export function LoggedInOnlyRoute({
   }, []);
 
   return isLoading ? (
-    <LoadingPage />
+    <LoadingPage {...attributes} />
   ) : jwtValidity ? (
-    <Outlet />
+    <Outlet {...attributes} />
   ) : (
     <Navigate to="/login" />
   );

@@ -4,11 +4,11 @@ import { Navigate, Outlet } from "react-router";
 
 import { LoadingPage } from "../pages/LoadingPage/Loading Page";
 
-interface LoggedOutOnlyRoute extends ComponentPropsWithoutRef<"div"> {}
+interface LoggedOutOnlyRouteProps extends ComponentPropsWithoutRef<"div"> {}
 
 export function LoggedOutOnlyRoute({
   ...attributes
-}: LoggedOutOnlyRoute): JSX.Element {
+}: LoggedOutOnlyRouteProps): JSX.Element {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [jwtValidity, setJWTValidity] = useState<boolean>(false);
 
@@ -30,9 +30,9 @@ export function LoggedOutOnlyRoute({
   }, []);
 
   return isLoading ? (
-    <LoadingPage />
+    <LoadingPage {...attributes} />
   ) : !jwtValidity ? (
-    <Outlet />
+    <Outlet {...attributes} />
   ) : (
     <Navigate to="/" />
   );
