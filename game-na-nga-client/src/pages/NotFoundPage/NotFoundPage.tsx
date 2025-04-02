@@ -28,7 +28,7 @@ export function NotFoundPage({
       className="bg-gnn-white justify-top flex h-screen min-h-screen w-screen flex-col items-center"
       {...attributes}
     >
-      <span className="font-jersey-25 text-gnn-red px-4 text-center text-5xl">
+      <span className="font-jersey-25 text-gnn-red py-4 text-center text-5xl">
         GAME NA NGA
       </span>
       <div className="flex h-full flex-col items-center justify-center gap-y-4">
