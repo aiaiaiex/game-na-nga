@@ -12,7 +12,7 @@ server.use([
   express.urlencoded({ extended: false }),
   cookieParser(),
   cors({
-    origin: CLIENT.url,
+    origin: true,
     methods: ["POST", "GET"],
     credentials: true,
   }),
