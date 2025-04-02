@@ -7,7 +7,7 @@ interface LoggedInOnlyRoute extends ComponentPropsWithoutRef<"div"> {}
 export function LoggedInOnlyRoute({
   ...attributes
 }: LoggedInOnlyRoute): JSX.Element {
-  const [jwtValidity, setJWTValidity] = useState<boolean>(true);
+  const [jwtValidity, setJWTValidity] = useState<boolean>(false);
 
   useEffect(() => {
     const getJWTValidity = async () => {
