@@ -28,7 +28,7 @@ userRouter.post("/signup", async (req, res): Promise<any> => {
 
       await pool.query("INSERT INTO `log` (email, action) VALUES (?, ?)", [
         email,
-        `REGISTER username: ${username}`,
+        `SIGN UP username: ${username}`,
       ]);
 
       return res.sendStatus(200);
