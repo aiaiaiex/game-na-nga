@@ -13,6 +13,7 @@ server.use([
   cookieParser(),
   cors({
     origin: true,
+    allowedHeaders: ["Content-Type"],
     methods: ["POST", "GET"],
     credentials: true,
   }),
