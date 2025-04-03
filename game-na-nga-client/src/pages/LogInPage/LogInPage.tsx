@@ -77,11 +77,13 @@ export function LogInPage({ ...attributes }: LogInPageProps): JSX.Element {
             required
           />
           <button
-            className="bg-gnn-red font-jersey-25 w-full cursor-pointer rounded p-1 shadow"
+            className="bg-gnn-red w-full cursor-pointer rounded p-1 shadow"
             type="button"
             onClick={login}
           >
-            <span className="text-xl font-bold text-white">Log In</span>
+            <span className="font-jersey-25 text-xl font-bold text-white">
+              Log In
+            </span>
           </button>
         </form>
       </div>

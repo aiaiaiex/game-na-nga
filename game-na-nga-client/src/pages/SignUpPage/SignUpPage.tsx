@@ -136,11 +136,13 @@ export function SignUpPage({ ...attributes }: SignUpPageProps): JSX.Element {
             required
           />
           <button
-            className="bg-gnn-red font-jersey-25 w-full cursor-pointer rounded p-1 shadow"
+            className="bg-gnn-red w-full cursor-pointer rounded p-1 shadow"
             type="button"
             onClick={signup}
           >
-            <span className="text-xl font-bold text-white">Sign Up</span>
+            <span className="font-jersey-25 text-xl font-bold text-white">
+              Sign Up
+            </span>
           </button>
         </form>
       </div>
