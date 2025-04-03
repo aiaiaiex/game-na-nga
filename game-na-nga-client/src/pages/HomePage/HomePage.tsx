@@ -38,8 +38,8 @@ export function HomePage({ ...attributes }: HomePageProps): JSX.Element {
         setShowModal={setShowCreateReview}
       />
       <div className="flex h-fit w-full flex-col items-center justify-start gap-y-4">
-        {reviews.map((review, index) => (
-          <Review {...review} key={index} />
+        {reviews.map((review) => (
+          <Review {...review} key={review.id} />
         ))}
       </div>
     </div>

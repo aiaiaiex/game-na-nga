@@ -41,8 +41,12 @@ export function AccountPage({ ...attributes }: AccountPageProps): JSX.Element {
       </div>
 
       <div className="flex h-fit w-full flex-col items-center justify-start gap-y-4">
-        {reviews.map((review, index) => (
-          <UpdateReview review={review} getReviews={getReviews} key={index} />
+        {reviews.map((review) => (
+          <UpdateReview
+            review={review}
+            getReviews={getReviews}
+            key={review.id}
+          />
         ))}
       </div>
     </div>
