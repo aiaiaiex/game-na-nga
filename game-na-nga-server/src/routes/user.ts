@@ -125,3 +125,37 @@ userRouter.post("/logout", verifyJWTToken, async (_req, res): Promise<any> => {
 userRouter.get("/verify", verifyJWTToken, async (_req, res): Promise<any> => {
   return res.sendStatus(200);
 });
+
+userRouter.get(
+  "/get-username",
+  verifyJWTToken,
+  async (_req, res): Promise<any> => {
+    const z_result = z
+      .string()
+      .toLowerCase()
+      .trim()
+      .min(6)
+      .max(254)
+      .safeParse(res.locals.email);
+
+    if (z_result.success) {
+      const email = z_result.data;
+      try {
+        const [mysql_result] = await pool.query<any[]>(
+          "SELECT username FROM `user` WHERE email = ?",
+          [email]
+        );
+        if (mysql_result.length > 0) {
+          res.json(mysql_result[0]);
+          return res.sendStatus(200);
+        } else {
+          return res.sendStatus(400);
+        }
+      } catch {
+        return res.sendStatus(400);
+      }
+    } else {
+      return res.sendStatus(400);
+    }
+  }
+);
