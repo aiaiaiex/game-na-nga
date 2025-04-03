@@ -106,6 +106,10 @@ export function CreateReview({
         );
 
         setErrorMessages([]);
+        setGame("");
+        setTitle("");
+        setStars(0);
+        setText("");
         setShowModal(false);
       } catch {
         setErrorMessages(["Something went wrong..."]);
