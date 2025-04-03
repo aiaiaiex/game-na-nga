@@ -17,8 +17,8 @@ reviewRouter.post("/create", verifyJWTToken, async (req, res): Promise<any> => {
 
   const z_result = z
     .object({
-      game: z.string().trim().min(1).max(70),
-      title: z.string().trim().min(1).max(70),
+      game: z.string().trim().min(1).max(36),
+      title: z.string().trim().min(1).max(36),
       stars: z.number().int().gte(0).lte(5),
       text: z.string().trim().min(1).max(280),
     })
@@ -126,8 +126,8 @@ reviewRouter.post("/update", verifyJWTToken, async (req, res): Promise<any> => {
   const z_result = z
     .object({
       id: z.number().int().gte(1),
-      game: z.string().trim().min(1).max(70),
-      title: z.string().trim().min(1).max(70),
+      game: z.string().trim().min(1).max(36),
+      title: z.string().trim().min(1).max(36),
       stars: z.number().int().gte(0).lte(5),
       text: z.string().trim().min(1).max(280),
     })
