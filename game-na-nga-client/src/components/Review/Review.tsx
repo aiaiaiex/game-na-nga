@@ -1,6 +1,7 @@
 import { ComponentPropsWithoutRef, JSX, useState } from "react";
 
 import StarIcon from "../../assets/svgs/star.svg?react";
+import axios from "axios";
 
 export interface ReviewProps {
   id: number;
@@ -93,6 +94,17 @@ export function CreateReview({
 
     if (!hasError) {
       try {
+        await axios.post(
+          `${import.meta.env.VITE_SERVER_URL}/review/create`,
+          {
+            game: preprocessed_game,
+            title: preprocessed_title,
+            stars: stars,
+            text: preprocessed_text,
+          },
+          { withCredentials: true },
+        );
+
         setErrorMessages([]);
         setShowModal(false);
       } catch {
