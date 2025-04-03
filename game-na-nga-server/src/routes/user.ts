@@ -147,7 +147,6 @@ userRouter.get(
         );
         if (mysql_result.length > 0) {
           res.json(mysql_result[0]);
-          return res.sendStatus(200);
         } else {
           return res.sendStatus(400);
         }
