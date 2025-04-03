@@ -14,7 +14,7 @@ export function HomePage({ ...attributes }: HomePageProps): JSX.Element {
   const [showCreateReview, setShowCreateReview] = useState<boolean>(false);
 
   useEffect(() => {
-    const getUsername = async () => {
+    const getReviews = async () => {
       try {
         const { data } = await axios.get(
           `${import.meta.env.VITE_SERVER_URL}/review/read-all`,
@@ -25,7 +25,7 @@ export function HomePage({ ...attributes }: HomePageProps): JSX.Element {
         setReviews([]);
       }
     };
-    getUsername();
+    getReviews();
   }, [showCreateReview]);
   return (
     <div

@@ -8,7 +8,7 @@ interface AccountPageProps extends ComponentPropsWithoutRef<"div"> {}
 export function AccountPage({ ...attributes }: AccountPageProps): JSX.Element {
   const [reviews, setReviews] = useState<ReviewProps[]>([]);
 
-  const getUsername = async () => {
+  const getReviews = async () => {
     try {
       const { data } = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/review/read-account`,
@@ -21,7 +21,7 @@ export function AccountPage({ ...attributes }: AccountPageProps): JSX.Element {
   };
 
   useEffect(() => {
-    getUsername();
+    getReviews();
   }, [reviews]);
   return (
     <div
@@ -42,7 +42,7 @@ export function AccountPage({ ...attributes }: AccountPageProps): JSX.Element {
 
       <div className="flex h-fit w-full flex-col items-center justify-start gap-y-4">
         {reviews.map((review, index) => (
-          <UpdateReview review={review} key={index} />
+          <UpdateReview review={review} getReviews={getReviews} key={index} />
         ))}
       </div>
     </div>
