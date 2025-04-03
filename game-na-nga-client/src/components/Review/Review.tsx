@@ -133,12 +133,56 @@ export function CreateReview({
                 required
               />
               <div className="flex w-fit flex-row items-center justify-between">
-                {[...Array(3)].map(() => (
-                  <StarIcon className="fill-gnn-red max-h-8 min-h-8 max-w-8 min-w-8" />
-                ))}
-                {[...Array(5 - 3)].map(() => (
-                  <StarIcon className="fill-gnn-gray max-h-8 min-h-8 max-w-8 min-w-8" />
-                ))}
+                <StarIcon
+                  className={`${stars < 1 ? "fill-gnn-gray" : "fill-gnn-red"} max-h-8 min-h-8 max-w-8 min-w-8 cursor-pointer`}
+                  onClick={() => {
+                    if (stars == 1) {
+                      setStars(0);
+                    } else {
+                      setStars(1);
+                    }
+                  }}
+                />
+                <StarIcon
+                  className={`${stars < 2 ? "fill-gnn-gray" : "fill-gnn-red"} max-h-8 min-h-8 max-w-8 min-w-8 cursor-pointer`}
+                  onClick={() => {
+                    if (stars == 2) {
+                      setStars(0);
+                    } else {
+                      setStars(2);
+                    }
+                  }}
+                />
+                <StarIcon
+                  className={`${stars < 3 ? "fill-gnn-gray" : "fill-gnn-red"} max-h-8 min-h-8 max-w-8 min-w-8 cursor-pointer`}
+                  onClick={() => {
+                    if (stars == 3) {
+                      setStars(0);
+                    } else {
+                      setStars(3);
+                    }
+                  }}
+                />
+                <StarIcon
+                  className={`${stars < 4 ? "fill-gnn-gray" : "fill-gnn-red"} max-h-8 min-h-8 max-w-8 min-w-8 cursor-pointer`}
+                  onClick={() => {
+                    if (stars == 4) {
+                      setStars(0);
+                    } else {
+                      setStars(4);
+                    }
+                  }}
+                />
+                <StarIcon
+                  className={`${stars < 5 ? "fill-gnn-gray" : "fill-gnn-red"} max-h-8 min-h-8 max-w-8 min-w-8 cursor-pointer`}
+                  onClick={() => {
+                    if (stars == 5) {
+                      setStars(0);
+                    } else {
+                      setStars(5);
+                    }
+                  }}
+                />
               </div>
             </div>
             <input
