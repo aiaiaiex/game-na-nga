@@ -33,7 +33,7 @@ export function AccountPage({ ...attributes }: AccountPageProps): JSX.Element {
       <div className="bg-gnn-red flex w-[48rem] items-center justify-center rounded p-4 shadow">
         <span className="font-jersey-25 text-4xl font-bold text-white">
           {reviews.length === 0
-            ? "YOU HAVEN'T REVIEWD A GAME YET"
+            ? "YOU HAVEN'T REVIEWED A GAME YET"
             : reviews.length === 1
               ? "YOUR REVIEW"
               : "YOUR REVIEWS"}
