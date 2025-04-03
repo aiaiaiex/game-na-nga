@@ -4,6 +4,7 @@ import cors from "cors";
 
 import { CLIENT, SERVER } from "./config";
 import { userRouter } from "./routes/user";
+import { reviewRouter } from "./routes/review";
 
 const server = express();
 
@@ -20,6 +21,7 @@ server.use([
 ]);
 
 server.use("/user", userRouter);
+server.use("/review", reviewRouter);
 
 server.get("/ping", async (req, res) => {
   res.json({ msg: "pong!" });
