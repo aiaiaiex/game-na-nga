@@ -50,12 +50,65 @@ reviewRouter.get(
   "/read-all",
   verifyJWTToken,
   async (_req, res): Promise<any> => {
-    try {
-      const [reviews] = await pool.query<any[]>(
-        "SELECT * FROM `review` ORDER BY timestamp DESC"
-      );
-      res.json(reviews);
-    } catch {
+    const z_email = z
+      .string()
+      .toLowerCase()
+      .trim()
+      .min(6)
+      .max(254)
+      .safeParse(res.locals.email);
+
+    if (z_email.success) {
+      const email = z_email.data;
+      try {
+        const [reviews] = await pool.query<any[]>(
+          "SELECT * FROM `review` ORDER BY timestamp DESC",
+          [email]
+        );
+
+        await pool.query("INSERT INTO `log` (email, action) VALUES (?, ?)", [
+          email,
+          `READ all reviews`,
+        ]);
+        res.json(reviews);
+      } catch {
+        return res.sendStatus(400);
+      }
+    } else {
+      return res.sendStatus(400);
+    }
+  }
+);
+
+reviewRouter.get(
+  "/read-account",
+  verifyJWTToken,
+  async (_req, res): Promise<any> => {
+    const z_email = z
+      .string()
+      .toLowerCase()
+      .trim()
+      .min(6)
+      .max(254)
+      .safeParse(res.locals.email);
+
+    if (z_email.success) {
+      const email = z_email.data;
+      try {
+        const [reviews] = await pool.query<any[]>(
+          "SELECT * FROM `review` WHERE author = ? ORDER BY timestamp DESC",
+          [email]
+        );
+
+        await pool.query("INSERT INTO `log` (email, action) VALUES (?, ?)", [
+          email,
+          `READ personal reviews`,
+        ]);
+        res.json(reviews);
+      } catch {
+        return res.sendStatus(400);
+      }
+    } else {
       return res.sendStatus(400);
     }
   }
