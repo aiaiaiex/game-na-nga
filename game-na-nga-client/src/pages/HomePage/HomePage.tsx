@@ -1,12 +1,17 @@
 import { ComponentPropsWithoutRef, JSX, useEffect, useState } from "react";
 import { NavigationBar } from "../../components/NavigationBar/NavigationBar";
 import axios from "axios";
-import { Review, ReviewProps } from "../../components/Review/Review";
+import {
+  CreateReview,
+  Review,
+  ReviewProps,
+} from "../../components/Review/Review";
 
 interface HomePageProps extends ComponentPropsWithoutRef<"div"> {}
 
 export function HomePage({ ...attributes }: HomePageProps): JSX.Element {
   const [reviews, setReviews] = useState<ReviewProps[]>([]);
+  const [showCreateReview, setShowCreateReview] = useState<boolean>(false);
 
   useEffect(() => {
     const getUsername = async () => {
@@ -21,16 +26,20 @@ export function HomePage({ ...attributes }: HomePageProps): JSX.Element {
       }
     };
     getUsername();
-  }, []);
+  }, [showCreateReview]);
   return (
     <div
       className="bg-gnn-white justify-top flex min-h-screen w-screen flex-col items-center justify-start gap-y-4"
       {...attributes}
     >
       <NavigationBar />
+      <CreateReview
+        showModal={showCreateReview}
+        setShowModal={setShowCreateReview}
+      />
       <div className="flex h-fit w-full flex-col items-center justify-start gap-y-4">
         {reviews.map((review, index) => (
-          <Review {...review} />
+          <Review {...review} key={index} />
         ))}
       </div>
     </div>
