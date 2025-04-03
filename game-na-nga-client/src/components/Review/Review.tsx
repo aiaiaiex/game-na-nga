@@ -71,7 +71,7 @@ export function CreateReview({
   const [text, setText] = useState<string>("");
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
 
-  const createPost = async () => {
+  const createReview = async () => {
     let hasError = false;
     const newErrorMessages: string[] = [];
 
@@ -238,7 +238,7 @@ export function CreateReview({
               <button
                 className="bg-gnn-red w-[12rem] cursor-pointer rounded p-2 shadow"
                 type="button"
-                onClick={createPost}
+                onClick={createReview}
               >
                 <span className="font-jersey-25 text-2xl font-bold text-white">
                   POST
@@ -259,24 +259,23 @@ export function CreateReview({
 }
 
 interface UpdateReviewProps extends ComponentPropsWithoutRef<"div"> {
-  showModal: boolean;
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   review: ReviewProps;
+  getReviews: () => Promise<void>;
 }
 
 export function UpdateReview({
-  showModal,
-  setShowModal,
   review,
+  getReviews,
   key,
 }: UpdateReviewProps): JSX.Element {
+  const [showModal, setShowModal] = useState<boolean>(false);
   const [game, setGame] = useState<string>(review.game);
   const [title, setTitle] = useState<string>(review.title);
   const [stars, setStars] = useState<number>(review.stars);
   const [text, setText] = useState<string>(review.text);
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
 
-  const createPost = async () => {
+  const updateReview = async () => {
     let hasError = false;
     const newErrorMessages: string[] = [];
 
@@ -321,7 +320,7 @@ export function UpdateReview({
     }
   };
 
-  const deletePost = async () => {
+  const deleteReview = async () => {
     try {
       await axios.post(
         `${import.meta.env.VITE_SERVER_URL}/review/delete`,
@@ -478,7 +477,10 @@ export function UpdateReview({
               <button
                 className="bg-gnn-red w-[12rem] cursor-pointer rounded p-2 shadow"
                 type="button"
-                onClick={deletePost}
+                onClick={() => {
+                  deleteReview();
+                  getReviews();
+                }}
               >
                 <span className="font-jersey-25 text-2xl font-bold text-white">
                   DELETE
@@ -488,10 +490,10 @@ export function UpdateReview({
                 className="bg-gnn-red w-[12rem] cursor-pointer rounded p-2 shadow"
                 type="button"
                 onClick={() => {
-                  setGame("");
-                  setTitle("");
-                  setStars(0);
-                  setText("");
+                  setGame(review.game);
+                  setTitle(review.title);
+                  setStars(review.stars);
+                  setText(review.text);
                   setShowModal(false);
                 }}
               >
@@ -502,7 +504,10 @@ export function UpdateReview({
               <button
                 className="bg-gnn-red w-[12rem] cursor-pointer rounded p-2 shadow"
                 type="button"
-                onClick={createPost}
+                onClick={() => {
+                  updateReview();
+                  getReviews();
+                }}
               >
                 <span className="font-jersey-25 text-2xl font-bold text-white">
                   UPDATE

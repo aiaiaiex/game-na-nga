@@ -7,22 +7,22 @@ interface AccountPageProps extends ComponentPropsWithoutRef<"div"> {}
 
 export function AccountPage({ ...attributes }: AccountPageProps): JSX.Element {
   const [reviews, setReviews] = useState<ReviewProps[]>([]);
-  const [showUpdateReview, setShowUpdateReview] = useState<boolean>(false);
+
+  const getUsername = async () => {
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/review/read-account`,
+        { withCredentials: true },
+      );
+      setReviews(data.length > 0 ? data : []);
+    } catch {
+      setReviews([]);
+    }
+  };
 
   useEffect(() => {
-    const getUsername = async () => {
-      try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_SERVER_URL}/review/read-account`,
-          { withCredentials: true },
-        );
-        setReviews(data.length > 0 ? data : []);
-      } catch {
-        setReviews([]);
-      }
-    };
     getUsername();
-  }, [showUpdateReview]);
+  }, [reviews]);
   return (
     <div
       className="bg-gnn-white justify-top flex min-h-screen w-screen flex-col items-center justify-start gap-y-4"
@@ -42,12 +42,7 @@ export function AccountPage({ ...attributes }: AccountPageProps): JSX.Element {
 
       <div className="flex h-fit w-full flex-col items-center justify-start gap-y-4">
         {reviews.map((review, index) => (
-          <UpdateReview
-            showModal={showUpdateReview}
-            setShowModal={setShowUpdateReview}
-            review={review}
-            key={index}
-          />
+          <UpdateReview review={review} key={index} />
         ))}
       </div>
     </div>
