@@ -299,6 +299,15 @@ export function UpdateReview({
       newErrorMessages.push("Review must have 1 character or more!");
       hasError = true;
     }
+    if (
+      preprocessed_game === review.game &&
+      preprocessed_title === review.title &&
+      stars === review.stars &&
+      preprocessed_text === review.text
+    ) {
+      newErrorMessages.push("Must update at least 1 field!");
+      hasError = true;
+    }
 
     if (!hasError) {
       try {
