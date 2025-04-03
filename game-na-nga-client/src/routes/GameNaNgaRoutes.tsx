@@ -5,6 +5,7 @@ import { LoggedInOnlyRoute } from "./LoggedInOnlyRoute";
 import { LoggedOutOnlyRoute } from "./LoggedOutOnlyRoute";
 
 import { HomePage } from "../pages/HomePage/HomePage";
+import { AccountPage } from "../pages/AccountPage/AccountPage";
 import { SignUpPage } from "../pages/SignUpPage/SignUpPage";
 import { LogInPage } from "../pages/LogInPage/LogInPage";
 import { NotFoundPage } from "../pages/NotFoundPage/NotFoundPage";
@@ -14,6 +15,7 @@ export function GameNaNgaRoutes(): JSX.Element {
     <Routes>
       <Route element={<LoggedInOnlyRoute />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/account" element={<AccountPage />} />
       </Route>
       <Route element={<LoggedOutOnlyRoute />}>
         <Route path="/signup" element={<SignUpPage />} />
