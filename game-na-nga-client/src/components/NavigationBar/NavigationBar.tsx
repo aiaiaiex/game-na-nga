@@ -46,13 +46,13 @@ export function NavigationBar({
       className="sticky top-0 flex w-full items-center justify-between bg-white px-8 py-2 shadow"
       {...attributes}
     >
-      <Link to="/" className="w-fit rounded px-2 py-1 shadow">
+      <Link to="/account" className="w-fit rounded px-2 py-1 shadow">
         <span className="text-gnn-red font-jersey-25 text-2xl font-bold">
           {username}
         </span>
       </Link>
-      <Link to="/">
-        <span className="text-gnn-red font-jersey-10 text-5xl">
+      <Link to="/" className="w-fit rounded px-2 shadow">
+        <span className="text-gnn-red font-jersey-10 text-5xl hover:underline">
           GAME NA NGA
         </span>
       </Link>
