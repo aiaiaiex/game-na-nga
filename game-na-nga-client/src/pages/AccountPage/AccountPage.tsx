@@ -1,4 +1,10 @@
-import { ComponentPropsWithoutRef, JSX, useEffect, useState } from "react";
+import {
+  ComponentPropsWithoutRef,
+  JSX,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { NavigationBar } from "../../components/NavigationBar/NavigationBar";
 import axios from "axios";
 import { ReviewProps, UpdateReview } from "../../components/Review/Review";
@@ -7,6 +13,7 @@ interface AccountPageProps extends ComponentPropsWithoutRef<"div"> {}
 
 export function AccountPage({ ...attributes }: AccountPageProps): JSX.Element {
   const [reviews, setReviews] = useState<ReviewProps[]>([]);
+  const [changeCount, incrementChangeCount] = useReducer((x) => x + 1, 0);
 
   const getReviews = async () => {
     try {
@@ -22,7 +29,7 @@ export function AccountPage({ ...attributes }: AccountPageProps): JSX.Element {
 
   useEffect(() => {
     getReviews();
-  }, [reviews]);
+  }, [changeCount]);
   return (
     <div
       className="bg-gnn-white justify-top flex min-h-screen w-screen flex-col items-center justify-start gap-y-4"
@@ -44,7 +51,7 @@ export function AccountPage({ ...attributes }: AccountPageProps): JSX.Element {
         {reviews.map((review) => (
           <UpdateReview
             review={review}
-            getReviews={getReviews}
+            incrementChangeCount={incrementChangeCount}
             key={review.id}
           />
         ))}

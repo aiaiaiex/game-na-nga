@@ -264,12 +264,12 @@ export function CreateReview({
 
 interface UpdateReviewProps extends ComponentPropsWithoutRef<"div"> {
   review: ReviewProps;
-  getReviews: () => Promise<void>;
+  incrementChangeCount: React.ActionDispatch<[]>;
 }
 
 export function UpdateReview({
   review,
-  getReviews,
+  incrementChangeCount,
   key,
 }: UpdateReviewProps): JSX.Element {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -324,6 +324,7 @@ export function UpdateReview({
         );
 
         setErrorMessages([]);
+        incrementChangeCount();
         setShowModal(false);
       } catch {
         setErrorMessages(["Something went wrong..."]);
@@ -344,6 +345,7 @@ export function UpdateReview({
       );
 
       setErrorMessages([]);
+      incrementChangeCount();
       setShowModal(false);
     } catch {
       setErrorMessages(["Something went wrong..."]);
@@ -492,7 +494,6 @@ export function UpdateReview({
                 type="button"
                 onClick={() => {
                   deleteReview();
-                  getReviews();
                 }}
               >
                 <span className="font-jersey-25 text-2xl font-bold text-white">
@@ -519,7 +520,6 @@ export function UpdateReview({
                 type="button"
                 onClick={() => {
                   updateReview();
-                  getReviews();
                 }}
               >
                 <span className="font-jersey-25 text-2xl font-bold text-white">

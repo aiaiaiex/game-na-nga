@@ -66,10 +66,10 @@ reviewRouter.get(
           [email]
         );
 
-        // await pool.query("INSERT INTO `log` (email, action) VALUES (?, ?)", [
-        //   email,
-        //   `READ all reviews`,
-        // ]);
+        await pool.query("INSERT INTO `log` (email, action) VALUES (?, ?)", [
+          email,
+          `READ all reviews`,
+        ]);
         res.json(reviews);
       } catch {
         return res.sendStatus(400);
@@ -100,10 +100,10 @@ reviewRouter.get(
           [email]
         );
 
-        // await pool.query("INSERT INTO `log` (email, action) VALUES (?, ?)", [
-        //   email,
-        //   `READ personal reviews`,
-        // ]);
+        await pool.query("INSERT INTO `log` (email, action) VALUES (?, ?)", [
+          email,
+          `READ personal reviews`,
+        ]);
         res.json(reviews);
       } catch {
         return res.sendStatus(400);
